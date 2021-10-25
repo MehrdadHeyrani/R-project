@@ -79,14 +79,14 @@ if(ncol(C)==nrow(C)){
 }
 ####################################################
 # FARINA SAEI
-D <- matrix(D(3,6,7,3), nrow=2, ncol=2,byrow =T)
-C
-# step2: if
+D <- matrix(c(10:33), nrow=6, ncol=4,byrow =T)
+D
+
 if(ncol(D)==nrow(D)){
   det(D)
 } else {
-  print("Matrix Not Square")
-
+  print("Matrix Not Square") 
+}
 
 
 
