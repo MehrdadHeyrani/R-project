@@ -65,6 +65,22 @@ t(B)
 if(nrow(B)== ncol(B)){"Matrix (B) is Square"} else{ dim(B)}
 ifelse(nrow(B)== ncol(B),det(B), "Matrix (B) is Not Square")
 ####################################################
+## Mehrdad
+# step1: matrix
+C <- matrix(c(3,6,7,3), nrow=2, ncol=2,byrow =T)
+C
+# step2: if
+if(ncol(C)==nrow(C)){
+  det(C)
+} else {
+  print("Matrix Not Square")
+}
+####################################################
+
+
+
+
+
 if(ncol(A)==nrow(A)){
   det(A)
 } else {
