@@ -95,6 +95,16 @@ if(ncol(D)==nrow(D)){
   det(D)
 } else {
   print("Matrix Not Square")
+ #FARINA SAEI
+    D <- matrix(c(75:99), nrow=5, ncol=5,byrow =T)
+D
+
+if(ncol(D)==nrow(D)){
+  det(D)
+} else {
+  print("Matrix Not Square")
+  
+} 
   #################################
 #Reyverdi
 #EXAMPLE1
