@@ -179,7 +179,11 @@ J2
 ifelse(ncol(J)==nrow(J2),matrix(J%*%J2,nrow=4,ncol=2),"not calculated")        
      
 #####################################################
-
+#Sara Mohammadzade
+K = matrix(360:399 , nrow = 8 , ncol = 5)
+K
+ifelse(nrow(K)==ncol(K) , det(K) , "Matrix Not Square")
+######################################################
   if(ncol(A)==nrow(A)){
   det(A)
 } else {
