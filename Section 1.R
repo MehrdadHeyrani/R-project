@@ -119,15 +119,12 @@ if(ncol(F)==nrow(F)){
 #Ghodsiyeh masihniya
 G <- matrix(41:56,nrow=4,ncol=4)
 G
-
 if(ncol(G)==nrow(G)){
   det(G)
 }else{
   print("matrix not square")
 }
-
 ifelse(ncol(G)==nrow(G),det(G),("matrix not square"))
-
 #####################################################
   if(ncol(A)==nrow(A)){
   det(A)
