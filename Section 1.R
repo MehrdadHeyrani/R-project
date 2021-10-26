@@ -184,13 +184,22 @@ K = matrix(360:399 , nrow = 8 , ncol = 5)
 K
 ifelse(nrow(K)==ncol(K) , det(K) , "Matrix Not Square")
 ######################################################
-  if(ncol(A)==nrow(A)){
-  det(A)
+##shirin
+     
+# step1: matrix
+L <- matrix(c(1:21), nrow=3, ncol=7,byrow =TRUE)
+L
+     
+     
+# step2: if
+if(ncol(L)==nrow(L)){
+  det(C)
 } else {
   print("Matrix Not Square")
-}
+}     
+  
 
-ifelse(ncol(A)==nrow(A),det(A), "Matrix Not Square")
+ifelse(ncol(L)==nrow(L),det(AL), "Matrix Not Square")
 ####################################################
 x <- c(6:-4)
 sqrt(x)  #- gives warning
