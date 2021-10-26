@@ -350,6 +350,18 @@ oil=ts(data[,3], start=1369, frequency=4)
 gdp=ts(data[,4], start=1369, frequency=4)
 
 plot(gdp,type="l", lwd = 3, lty = 1, col=1)
+#fateme tazik
+
+# step1: matrix
+G <- matrix(c(1,3,5,7,9,11,13,15,17), nrow=3, ncol=3,byrow =T)
+G
+
+# step2: if
+if(ncol(G)==nrow(G)){ 
+  det(G)
+} else {
+  print("Matrix Not Square")
+}
 
 
 
