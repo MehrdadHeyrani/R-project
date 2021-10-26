@@ -125,6 +125,18 @@ if(ncol(G)==nrow(G)){
   print("matrix not square")
 }
 ifelse(ncol(G)==nrow(G),det(G),("matrix not square"))
+#####################################################    
+     
+     
+     
+
+     
+     
+     
+     
+     
+     
+     
 #####################################################
   if(ncol(A)==nrow(A)){
   det(A)
