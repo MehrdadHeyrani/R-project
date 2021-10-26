@@ -395,6 +395,16 @@ if(ncol(G)==nrow(G)){
 } else {
   print("Matrix Not Square")
 }
+####################################################
+##Mercedeh
+#step1:matrix
+H <- matrix(C(3,6,7,3), nrow=2, ncol=3,byrow = T)
+H
 
-
+#STEP2:if
+if(ncol(H)==nrow(H)){
+  det(H)
+} else {
+  print("Matrix Not Square")
+}
 
