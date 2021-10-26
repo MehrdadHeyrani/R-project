@@ -102,8 +102,19 @@ E <- matrix(c("Father", "Mother", "Sun", "daughter"), nrow = 2, ncol = 2,byrow =
 E
 if(ncol(E)>nrow(E)){dim(E)} else {print("Matrix is Square")}    
 
+#####################################
+#haniyeh-mohammadi
 
-
+#STEP1: MATRIX 
+F<- matrix(10:21, nrow = 2, ncol = 6, byrow = T)
+F
+     
+#STEP2: IF
+if(ncol(F)==nrow(F)){
+  det(F)
+} else {
+  print("Matrix Not Square")
+}        
 ####################################################
 if(ncol(A)==nrow(A)){
   det(A)
