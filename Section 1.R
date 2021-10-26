@@ -95,7 +95,12 @@ if(ncol(D)==nrow(D)){
   det(D)
 } else {
   print("Matrix Not Square")
-  
+  #################################
+#Reyverdi
+#EXAMPLE1
+E <- matrix(c("Father", "Mother", "Sun", "daughter"), nrow = 2, ncol = 2,byrow = T)
+E
+if(ncol(E)>nrow(E)){dim(E)} else {print("Matrix is Square")}    
 
 
 
