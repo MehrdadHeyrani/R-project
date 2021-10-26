@@ -137,8 +137,16 @@ if(ncol(H)==nrow(H)){
 } else {
   print("Matrix Not Square")
 }
+############################################
      
+#foad
+i=matrix1=matrix(c(1:25),ncol=5,nrow=25,byrow=TRUE)
+matrix2=t(matrix1)
 
+
+
+if(nrow(i)== ncol(i)){"Matrix (i) is Square"} else{ dim(i)}
+ifelse(nrow(i)== ncol(i),det(i), "Matrix (i) is Not Square")
      
 
 #####################################################
