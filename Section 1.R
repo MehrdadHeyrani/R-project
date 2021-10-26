@@ -150,6 +150,17 @@ ifelse(nrow(i)== ncol(i),det(i), "Matrix (i) is Not Square")
      
 
 #####################################################
+     
+ #mansoor
+J=matrix(seq(0, 5, length=20),nrow=4,ncol=5,byrow=T)
+J
+J2=matrix(seq(1,2,length=10),nrow=5,ncol=2,byrow=T)
+J2
+
+ifelse(ncol(J)==nrow(J2),matrix(J%*%J2,nrow=4,ncol=2),"not calculated")        
+     
+#####################################################
+
   if(ncol(A)==nrow(A)){
   det(A)
 } else {
