@@ -236,6 +236,14 @@ if(dim(N1)>=dim(N2)){
      O=matrix(seq(1,25,3), nrow = 3, ncol = 3, byrow = TRUE,dimnames = list(c("Radif1", "Radif2","Radif3"), c("Sotoon1", "Sotoon2", "Sotoon3")))
      
 ###################################################
+#S.M.Afghahi
+
+#1
+P <- matrix(1:28, nrow = 4, ncol = 7)
+
+#2
+if(ncol(P)==nrow(P)) { det(P)} else { print("Thats not square")}
+###########################
 
 x <- c(6:-4)
 sqrt(x)  #- gives warning
