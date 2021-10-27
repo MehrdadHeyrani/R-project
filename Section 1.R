@@ -461,5 +461,17 @@ if(ncol(G)==nrow(G)){
   print("Matrix Not Square")
 }
 ####################################################
+#mahsa bazm
 
+# step1: matrix
+H=matrix(3:14,nrow=4,ncol=3,byrow=F)
+H
+I=matrix(5:28,nrow=4,ncol=3,byrow=T)
+I
 
+# step2: if
+if(nrow(H)==nrow(I) & ncol(H)==ncol(I)){
+  c=H+I
+  print(c)
+}
+##################################################
