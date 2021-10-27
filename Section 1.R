@@ -211,6 +211,26 @@ if(nrow(M1)==ncol(M2)){
   print("check dimentions of matrices")
 }
 ####################################################
+##maede mohamadi
+#example1
+N1=matrix(201:220,nrow=10, ncol=2, byrow=T)
+N1
+if(ncol(N1)==nrow(N1)){
+  det(N1)
+} else{
+  print("Matrix Not Square")
+}
+
+#example2
+N2=matrix(203:222,nrow=10, ncol=2, byrow=T)
+N2
+if(dim(N1)>=dim(N2)){
+  print("Matrix N1 is greater than N2")
+}else{
+  print("Matrix N1 is not greater than N2")
+}
+  
+ ###################################################
 x <- c(6:-4)
 sqrt(x)  #- gives warning
 sqrt(ifelse(x >= 0, x, NA))  # no warning
