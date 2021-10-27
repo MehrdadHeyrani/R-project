@@ -201,6 +201,16 @@ if(ncol(L)==nrow(L)){
 
 ifelse(ncol(L)==nrow(L),det(AL), "Matrix Not Square")
 ####################################################
+#peran
+M1 <- matrix(5:29, nrow = 5, ncol = 5, byrow = TRUE)
+M2 <- matrix(1:25, nrow = 5, ncol= 5, byrow = FALSE)
+
+if(nrow(M1)==ncol(M2)){
+  M1*M2
+} else {
+  print("check dimentions of matrices")
+}
+####################################################
 x <- c(6:-4)
 sqrt(x)  #- gives warning
 sqrt(ifelse(x >= 0, x, NA))  # no warning
