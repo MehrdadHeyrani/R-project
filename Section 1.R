@@ -230,7 +230,13 @@ if(dim(N1)>=dim(N2)){
   print("Matrix N1 is not greater than N2")
 }
   
- ###################################################
+###################################################
+## Ahad Choupani Assignments of the 1st session
+     ## Creating a matrix
+     O=matrix(c(1,4,7,10,13,16,19,22,25), nrow = 3, ncol = 3, byrow = TRUE,dimnames = list(c("Radif1", "Radif2","Radif3"), c("Sotoon1", "Sotoon2", "Sotoon3")))
+     
+###################################################
+
 x <- c(6:-4)
 sqrt(x)  #- gives warning
 sqrt(ifelse(x >= 0, x, NA))  # no warning
