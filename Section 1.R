@@ -63,7 +63,13 @@ A[1,2]
 # muhammad kabiri
 B=matrix(34:201, nrow=14, ncol=12)
 t(B)
-if(nrow(B)== ncol(B)){"Matrix (B) is Square"} else{ dim(B)}
+if(nrow(B)== ncol(B)){
+     "Matrix (B) is Square"
+}
+else{ 
+     dim(B)
+}
+
 ifelse(nrow(B)== ncol(B),det(B), "Matrix (B) is Not Square")
 ####################################################
 ## Mehrdad
