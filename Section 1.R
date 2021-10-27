@@ -233,7 +233,7 @@ if(dim(N1)>=dim(N2)){
 ###################################################
 ## Ahad Choupani Assignments of the 1st session
      ## Creating a matrix
-     O=matrix(c(1,4,7,10,13,16,19,22,25), nrow = 3, ncol = 3, byrow = TRUE,dimnames = list(c("Radif1", "Radif2","Radif3"), c("Sotoon1", "Sotoon2", "Sotoon3")))
+     O=matrix(seq(1,25,3), nrow = 3, ncol = 3, byrow = TRUE,dimnames = list(c("Radif1", "Radif2","Radif3"), c("Sotoon1", "Sotoon2", "Sotoon3")))
      
 ###################################################
 
