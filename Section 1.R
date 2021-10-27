@@ -270,6 +270,19 @@ for(i in 1:10) {
 
   
 }
+
+#FARINA SAEI
+#FOR
+for(i in 2:5) 
+for (j in 3:6)
+{ print(i*j)
+  }
+
+
+
+
+
+
 ####################################################
 add = function(a,b) { 
   result = a+b*a
