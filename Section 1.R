@@ -284,9 +284,19 @@ for(i in 2:5)
     for(k in 2)
   { print(i*j)/k
   }
-
-
-
+################
+#class2
+#Rey Allahverdi
+       #for
+for(i in 1:3){print(A<-matrix(1:9, nrow = 3,ncol = 3))}
+      #function
+z=function(x,y){u=x^0.5+y^0.5
+return(u)}
+z(1,2)
+      #For & Function
+W<- function(z) {for(x in 1:10) { c = x^0.5
+    print(c)}}
+W(1)
 
 ####################################################
 add = function(a,b) { 
