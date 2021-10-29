@@ -299,6 +299,31 @@ W<- function(z) {for(x in 1:10) { c = x^0.5
 W(1)
 
 ####################################################
+
+#### exercise  #### 2nd session####
+
+# Muhammad Kabiri
+
+### function & for & if ###
+
+GDP <- c(170000000000 , 1200000000000 , 1500000000000 , 160000000000 , 1300000000000 , 200000000000)
+Population <- c( 20000000 , 35000000 , 50000000 , 70000000 , 100000000 , 80000000)
+  
+ GDPpC <- function(GDP,Population){
+   GDP / Population
+ }
+ 
+ for(i in 1:6){
+ A[i] <- GDPpC(GDP[i],Population[i])
+ 
+if ( A[i] >= 11000){
+  print("More than the global average") 
+} else {
+  print("Less than the global average")
+}
+ }
+
+###############################################
 add = function(a,b) { 
   result = a+b*a
   return(result)
