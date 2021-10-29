@@ -120,6 +120,19 @@ if(ncol(D)==nrow(D)){
 } else {
   print("Matrix Not Square")
 }
+  #FARINA SAEI
+#FOR
+for(i in 2:5) 
+for (j in 3:6)
+{ print(i*j)
+  }
+#FARINA SAEI
+     #FOR
+for(i in 2:5) 
+  for (j in 3:6)
+    for(k in 2)
+  { print(i*j)/k
+  }   
   #################################
 #Reyverdi
 #EXAMPLE1
