@@ -133,6 +133,15 @@ for(i in 2:5)
     for(k in 2)
   { print(i*j)/k
   }   
+#FARINA SAEI
+# FUNCTION
+far= function (a,b,c){
+  result= c-(a*b)
+  return(result)
+}
+far(100,50,200 )
+
+
   #################################
 #Reyverdi
 #EXAMPLE1
