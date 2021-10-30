@@ -309,7 +309,25 @@ for(i in 1:10) {
 
   
 }
+######################################################
+##################  Bagherpour #######################
+######################################################
+  #matrix
+B <- matrix(20:31 , nrow=4 , ncol=3 , byrow=T)
+B
+ifelse(ncol(B)==nrow(B) , det(B) , "matrix is not square")
 
+if ( ncol(B)==nrow(B)) {
+     det(B)
+     }else{
+     print(dim(B))
+     }
+b=c(13 , 17, 19, 31 , 37 , 7, 23 , 5 , 3)
+b
+N <- ( matrix ( b ,nrow = 3, ncol = 3 , byrow = T ))
+print(det(N))
+ 
+######################################################
 #FARINA SAEI
 #FOR
 for(i in 2:5) 
