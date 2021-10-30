@@ -155,7 +155,17 @@ far(100,50,200 )
    result=(sin(A*B)+tan(A*C))/(cos(log(A*B*C)))
    return(result)
  }
- SD(25,45,90)     
+ SD(25,45,90) 
+     #farina saei
+     # for & function
+    for(i in 10:40)
+ for(j in 15:25)
+
+CA=function(i,j){
+result=(i+j)/5
+return(result)
+}   
+CA(20,20)   
 
 
   #################################
