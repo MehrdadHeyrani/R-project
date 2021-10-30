@@ -140,6 +140,22 @@ far= function (a,b,c){
   return(result)
 }
 far(100,50,200 )
+#farina saei
+     #function
+     FS=function(n,m){
+  x
+  result=(n^3)+log(n*m)
+  return(result)
+}
+ FS(20,30) 
+ #
+#FARINA SAEI
+# FUNCTION
+ SD= function(A,B,C){
+   result=(sin(A*B)+tan(A*C))/(cos(log(A*B*C)))
+   return(result)
+ }
+ SD(25,45,90)     
 
 
   #################################
