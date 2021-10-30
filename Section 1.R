@@ -230,14 +230,31 @@ if(ncol(L)==nrow(L)){
 ifelse(ncol(L)==nrow(L),det(AL), "Matrix Not Square")
 ####################################################
 #peran
+#step1: matrix
 M1 <- matrix(5:29, nrow = 5, ncol = 5, byrow = TRUE)
 M2 <- matrix(1:25, nrow = 5, ncol= 5, byrow = FALSE)
-
+     
+#step2: if
 if(nrow(M1)==ncol(M2)){
   M1*M2
 } else {
   print("check dimentions of matrices")
 }
+     
+#step3: for
+x <- c(5, 10, 15, 20, 25)
+y <- c(1:5)
+new <- numeric(5)
+for (i in 1:5) {
+  new[i] = x[i] + y[i]
+}
+
+#step4: function
+xy <- function(x,y) {
+  xy=x*y
+  }
+output <- xy(x=51, y=73)
+print(output)
 ####################################################
 ##maede mohamadi
 #example1
