@@ -435,6 +435,48 @@ f2=function(x,y){
 ##################################################
 ##################################################
 
+########## Mostafa_Saberi ##########
+####### R_class ############
+#### SESSION1 #########
+
+#Matrices
+
+M <- rbind(c(3, 2, 5, 1, 6), c(4,8,9,2,0), c(5,3,2,1,2))
+
+colnames(M) <- c("Mon", "Tues", "Wed", "Thur", "Fri")
+rownames(M) <- c("S&P", "App1", "Goog")
+M
+t(M)
+dim(M)
+NROW(M)
+ncol(M)
+
+###### Agar soton Matrices Bozorgtar az radif bashad.
+
+if(ncol(M)>NROW(M)){
+  print("HOORA")
+} else {
+  print("see u later")
+}
+
+### Function ###
+SS <- mean(M)
+mediA <- function(M) {
+  SS <- sum(M)/length(M)
+}
+## now run ##
+M
+SS
+mediA
+##FOR & FUNCTION##
+SS <- mean(M)
+SS2 <- ("SS^2")
+mediA <- function(M) {
+  SS <- sum(M)/length(M)
+ for (SS in 1:10) {
+  print(SS*3)
+}
+  
 ###############################################
 add = function(a,b) { 
   result = a+b*a
