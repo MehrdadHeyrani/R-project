@@ -552,6 +552,27 @@ plot(arc(x)~x,
      pch=21,cex=2,xlim=c(0,1),ylim=c(0,pi),
       main="The Arcsine Transformation")
 lines(c(0,1),c(0,pi),col="red",lwd=2)
+################## Reyhaneh Allahverdi-exercise 3
+mydata=read.csv("demand.csv",header=T)
+View(mydata)
+
+library (lmtest)
+library (ggplot2)
+library (dplyr)
+library (visreg)
+
+df<-dplyr::select_if(mydata, is.numeric)
+r<-cor(df, use="complete.obs")
+round(r,2)
+
+
+#ols
+demand_lm<-lm(qc~pc+psh+pt+pch+expenditure, data=mydata)
+summary(demand_lm)
+
+library (visreg)
+visreg(demand_lm, "expenditure", gg=TRUE)
+visreg(demand_lm, "pc", gg=TRUE)
 ####################################################
 install.packages("AER")
 library(AER)
