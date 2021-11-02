@@ -253,7 +253,9 @@ f1 = function(i){
 }
 
 f1(45)
-     
+#reg
+mymodel = lm(Fertility ~ Agriculture , data = swiss)
+plot(Fertility ~ Agriculture , data = swiss, col = "black")     
 ######################################################
 ##shirin
      
