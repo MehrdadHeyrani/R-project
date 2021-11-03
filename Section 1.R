@@ -255,7 +255,17 @@ f1 = function(i){
 f1(45)
 #reg
 mymodel = lm(Fertility ~ Agriculture , data = swiss)
-plot(Fertility ~ Agriculture , data = swiss, col = "black")     
+plot(Fertility ~ Agriculture , data = swiss, col = "black")
+     
+setwd("C:/Users/Lenovo/Desktop/r class")
+
+mydata = read.csv("sh.csv" , header = T)
+
+
+lm1 = lm(rd ~ rop + rcp + w , data = mydata)
+summary(lm1)
+     
+     
 ######################################################
 ##shirin
      
