@@ -735,40 +735,333 @@ Box.test(residuals(consump1), type="Box-Pierce")
 Box.test(residuals(consump1), type="Ljung-Box")
 bgtest(consump1)
 ####################################################
-#  load quarterly database in R
-setwd("E:/Master/Econometrics/22-R intro")
-data=read.csv("s1.csv",header=T)
-names(data)
-date=ts(data[,1], start=1369, frequency=4)
-ex=ts(data[,2],  start=1369, frequency=4)
-oil=ts(data[,3], start=1369, frequency=4)
-gdp=ts(data[,4], start=1369, frequency=4)
-
-plot(gdp,type="l", lwd = 3, lty = 1, col=1)
-#fateme tazik
-
-# step1: matrix
-G <- matrix(c(1,3,5,7,9,11,13,15,17), nrow=3, ncol=3,byrow =T)
-G
-
-# step2: if
-if(ncol(G)==nrow(G)){ 
-  det(G)
-} else {
-  print("Matrix Not Square")
-}
-####################################################
-#mahsa bazm
-
-# step1: matrix
-H=matrix(3:14,nrow=4,ncol=3,byrow=F)
-H
-I=matrix(5:28,nrow=4,ncol=3,byrow=T)
-I
-
-# step2: if
-if(nrow(H)==nrow(I) & ncol(H)==ncol(I)){
-  c=H+I
-  print(c)
-}
+     
 ##################################################
+# step1: set working directory 
+##################################################
+
+setwd("C:/Users/mehrd/Desktop/R class")
+
+##################################################
+# step 2: load packages 
+##################################################
+library(lmtest)
+library(ggplot2)
+library(ggcorrplot)
+library(dplyr)
+library(visreg)
+library(quantmod)
+
+
+
+##################################################
+# step 3: import data  or download data
+##################################################
+
+# read csv file:
+
+Mydata=read.csv("Data1.csv",header = T)
+
+Data14=abs(Mydata$D14)
+Data14.1=abs(Mydata$D14)
+
+plot(Data14, type="l", lwd=4, col="green")
+
+summary(Data14)
+
+
+### download data
+symbol.vec = c("^GSPC") # get S&P 500
+getSymbols(symbol.vec, from ="2017-01-03", to = "2020-01-03")
+
+### extract log-returns of adjusted prices
+
+SP500.return = CalculateReturns(GSPC[, "GSPC.Adjusted", drop=F], method="log")
+
+SP500.ret = SP500.return[-1,]
+
+colnames(SP500.ret) = "SP500.ret"
+
+
+# rerun plot and density plot
+
+qplot(x = 1:length(SP500.ret) , y = SP500.ret , geom = 'point') +
+  geom_point(color = 'blue') + 
+  geom_hline(yintercept = mean(SP500.ret) , color = 'red' , size = 1) + 
+  labs(x = '' , y = 'SP500.ret')
+
+qplot(SP500.ret , geom = 'density') + 
+   geom_vline(xintercept = mean(SP500.ret) , color = 'red' , size = 1) +
+  geom_density(fill = 'lightgreen' , alpha = 0.4) + labs(x = '')
+
+
+
+
+
+###### ###### ###### ###### ###### ###### 
+# Linear regression Example
+###### ###### ###### ###### ###### ###### 
+
+
+data(SaratogaHouses, package="mosaicData")
+
+# select numeric variables
+df <- dplyr::select_if(SaratogaHouses, is.numeric)
+
+# calulate the correlations
+r <- cor(df, use="complete.obs")
+round(r,2)
+
+
+
+library(ggplot2)
+library(ggcorrplot)
+ggcorrplot(r)
+
+
+ggcorrplot(r,
+           hc.order = T, 
+           type = "lower",
+           lab = TRUE)
+
+
+# OLS regression 
+
+houses_lm <- lm(price ~ lotSize+ age + landValue +
+                  livingArea + bedrooms + bathrooms +
+                  waterfront , 
+                data = SaratogaHouses)
+
+summary(houses_lm)
+
+
+
+library(visreg)
+visreg(houses_lm, "livingArea", gg = T) 
+
+
+
+# conditional plot of price vs. waterfront location
+visreg(houses_lm, "waterfront", gg = TRUE) +
+  scale_y_continuous(label = scales::dollar) +
+  labs(title = "Relationship between price and location",
+       subtitle = "controlling for lot size, age, land value, bedrooms and bathrooms",
+       caption = "source: Saratoga Housing Data (2006)",
+       y = "Home Price",
+       x = "Waterfront")
+
+
+###### ###### ###### ###### ###### ###### 
+#Testing Linear Regression Models
+###### ###### ###### ###### ###### ###### 
+
+
+# perform Breusch-Pagan test
+bptest(price ~ lotSize+ age + landValue +
+         livingArea + bedrooms + bathrooms +
+         waterfront , 
+       data = SaratogaHouses)
+
+
+## perform Durbin-Watson test
+#Performs the Durbin-Watson test for autocorrelation of disturbances.
+dwtest(price ~ lotSize+ age + landValue +
+         livingArea + bedrooms + bathrooms +
+         waterfront , 
+       data = SaratogaHouses)
+
+## perform Goldfeld-Quandt test
+#Goldfeld-Quandt test against heteroskedasticity
+
+gqtest(price ~ lotSize+ age + landValue +
+         livingArea + bedrooms + bathrooms +
+         waterfront , 
+       data = SaratogaHouses)
+
+
+
+
+# H0: Added regressors fit not different than base model
+resettest(houses_lm) 
+
+# H0: middle data fit not different than base model
+
+raintest(houses_lm, order.by = ~ age, data = SaratogaHouses) 
+
+
+# H0: mean of recursive residuals = 0
+harvtest(houses_lm, order.by = ~age, data = SaratogaHouses)
+
+
+###### ###### ###### ###### ###### ###### 
+# Threshold regression
+###### ###### ###### ###### ###### ###### 
+
+
+library(astsa)
+th=10 # Threshold value
+
+
+less = (df$age<th)
+
+P=df$price[less]
+age=df$age[less ]
+rooms=df$rooms[less ]
+land=df$landValue[less ]
+
+
+##Regression for values below the threshold
+
+out1 = lm(P~age+rooms+land)
+summary(out1)
+
+##Regression for values above the threshold
+greater = (df$age>=th)
+
+P2=df$price[greater]
+age2=df$age[greater]
+rooms2=df$rooms[greater]
+land2=df$landValue[greater]
+
+out2 = lm(P2~age2+rooms2+land2)
+summary(out2)
+
+##Residuals
+res1 = residuals(out1)
+res2 = residuals(out2)
+less[less==1]= res1
+greater[greater==1] = res2
+resid = less + greater
+acf2(resid)
+
+##Predicted values
+
+fit1 = predict(out1)
+fit2 = predict(out2)
+less[less==1]= fit1
+greater[greater==1] = fit2
+fit = less + greater
+plot(df$price, type="l")
+lines(fit, col = "red", lty="dashed")
+
+
+library(tsDyn)
+flu.tar4.05=setar(df$price, m=2, thDelay=0, th=200000) #
+summary(flu.tar4.05) #this shows the final model above and below .05
+plot(flu.tar4.05) #cycles through fit and diagnostic plots 
+
+#####################################
+
+ifbdata=read.csv("ifbindex.csv",header=T)
+head(ifbdata)
+ifb=(ifbdata$ifb)
+x <- (log10(ifb))
+R <- diff(log10(ifb))
+plot(R, type="l", col=2, lwd=2, main="IFB return")
+
+######################## creating TAR   ##########################
+start=-1/20
+end=1/20
+trim=seq(start, end, length.out = 11)
+
+RSS=matrix(NA,nrow =length(trim), ncol=1 )
+
+
+for(i in trim){ # hint:  trim the data
+  TAR=ifelse(lag(R) >= i, 1, 0)
+  Rt=R
+  Rt1=lag(R,k=1)
+  
+  regim1=Rt1*TAR
+  regim2=Rt1*(1-TAR)
+  
+  mod=lm(Rt~regim1)
+  mod=lm(Rt~regim2) # hint:replace your model
+  RSS[,i]=sum(resid(mod)^2)      
+}
+
+min(RSS)
+RSS
+r=0  
+TAR=ifelse(lag(R) >= r, 1, 0)
+Rt=R
+Rt1=lag(R,k=1)
+
+regim1=Rt1*TAR
+regim2=Rt1*(1-TAR)
+
+mod=lm(Rt~regim1+regim2) # hint:replace your model
+
+
+##################################################
+par(mfrow=c(2,1))
+plot(ifb,lwd=3)
+plot(x, col="blue", lwd=3,lty=5)
+
+library(sm)
+par(mfrow=c(1,2))
+autopairs(x, lag=1, type="regression")
+autopairs(x, lag=40, type="regression")
+acf(x)
+pacf(x)
+par(mfrow=c(1,1))
+####################################################
+library(tsDyn)
+x <- (log10(ifb))
+mod.setar <- setar(x, m=2, mL=2, mH=2, thDelay=1)
+mod.setar
+plot(mod.setar)
+
+mod2=lstar(x, m=2, thDelay=1)
+mod2
+plot(mod2)
+####################################################
+mod <- list()
+mod[["linear"]] <- linear(x, m=2)
+mod[["setar"]] <- setar(x, m=2, thDelay=1)
+mod[["lstar"]] <- lstar(x, m=2, thDelay=1)
+mod[["nnetTs"]] <- nnetTs(x, m=2, size=3)
+mod[["aar"]] <- aar(x, m=2)
+sapply(mod, AIC)
+sapply(mod, MAPE)
+summary(mod[["setar"]])
+
+####################################################
+par(mfrow=c(2,1))
+plot(mod[["setar"]], lwd=3)
+par(mfrow=c(1,1))
+####################################################
+
+mod.test <- list()
+x.train <- window(x, end=100)
+x.test <- window(x, start=99)
+mod.test[["linear"]] <- linear(x.train, m=2)
+mod.test[["setar"]] <- setar(x.train, m=2, thDelay=1)
+mod.test[["lstar"]] <- lstar(x.train, m=2, thDelay=1, trace=FALSE, control=list(maxit=1e5))
+mod.test[["nnet"]]<-nnetTs(x.train,m=2, size=3, control=list(maxit=1e5))
+frc.test <- lapply(mod.test, predict, n.ahead=50)
+par(mfrow=c(1,1))
+plot(x.test,ylim=range(x), lwd=2)
+for(i in 1:length(frc.test))
+  lines(frc.test[[i]], lty=i+1, col=i+1, lwd=3)
+legend( "bottomleft",lty=1:(length(frc.test)+1), col=1:(length(frc.test)+1), legend=c("observed",names(frc.test)),lwd=3)
+
+####################################################
+####################################################
+##########                                ##########
+##########         SECTION 3-2            ##########
+##########                                ##########
+####################################################
+####################################################
+####################################################
+library(MSwM)
+x <- diff(log10(ifb))
+mod=lm(x~1)
+summary(mod)
+m.mswm=msmFit(mod,k=3,p=1,sw=rep(TRUE,3))
+summary(m.mswm)
+plot(m.mswm)
+plotProb(m.mswm)          
+####################################################
+
+
